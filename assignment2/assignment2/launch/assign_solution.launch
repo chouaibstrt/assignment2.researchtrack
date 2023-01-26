@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+   <!-- <node pkg ="control" type="client_node" name="cilent" output="screen" /> -->
+
+   <node pkg ="control" type="client_sub_node" name="client_sub" output="screen" />
+
+   <node pkg ="control" type="info_counter_node" name="info_counter" output="screen" />
+
+   <node pkg ="control" type="info_sub_node" name="info_sub" output="screen" />
+</launch>
+
