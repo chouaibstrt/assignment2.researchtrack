@@ -1,0 +1,67 @@
+\hypertarget{client__sub_8cpp}{}\doxysection{src/client\+\_\+sub.cpp File Reference}
+\label{client__sub_8cpp}\index{src/client\_sub.cpp@{src/client\_sub.cpp}}
+
+
+Subscriber node for receiving odometry information and publishing position and velocity.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+String.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$control/\+Vel.\+h$>$}\newline
+Include dependency graph for client\+\_\+sub.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{client__sub_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{client__sub_8cpp_ad5fc08d91ba2b91155db98977c34f90c}{Cbkodom}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the odom topic. description\+: \end{DoxyCompactList}\item 
+q int \mbox{\hyperlink{client__sub_8cpp_a955f002de769e23465593c0d5a41ee5c}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function of the client\+\_\+sub node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{client__sub_8cpp_ac9c0a59da9fd4b4f94183db4e06c4df1}\label{client__sub_8cpp_ac9c0a59da9fd4b4f94183db4e06c4df1}} 
+loop\+\_\+rate {\bfseries sleep} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{client__sub_8cpp_ad69ff556243228928e369bb248d2d07c}\label{client__sub_8cpp_ad69ff556243228928e369bb248d2d07c}} 
+control\+::\+Vel {\bfseries msg1}
+\item 
+\mbox{\Hypertarget{client__sub_8cpp_a9717e7bbecb906637e86cef6da3d83c2}\label{client__sub_8cpp_a9717e7bbecb906637e86cef6da3d83c2}} 
+{\bfseries return}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Subscriber node for receiving odometry information and publishing position and velocity. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{client__sub_8cpp_ad5fc08d91ba2b91155db98977c34f90c}\label{client__sub_8cpp_ad5fc08d91ba2b91155db98977c34f90c}} 
+\index{client\_sub.cpp@{client\_sub.cpp}!Cbkodom@{Cbkodom}}
+\index{Cbkodom@{Cbkodom}!client\_sub.cpp@{client\_sub.cpp}}
+\doxysubsubsection{\texorpdfstring{Cbkodom()}{Cbkodom()}}
+{\footnotesize\ttfamily void Cbkodom (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function for the odom topic. description\+: 
+
+This function is called whenever a new Odometry message is received on the /odom topic. It extracts position and velocity information from the message and stores it in the custom Vel message. \mbox{\Hypertarget{client__sub_8cpp_a955f002de769e23465593c0d5a41ee5c}\label{client__sub_8cpp_a955f002de769e23465593c0d5a41ee5c}} 
+\index{client\_sub.cpp@{client\_sub.cpp}!main@{main}}
+\index{main@{main}!client\_sub.cpp@{client\_sub.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily q int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function of the client\+\_\+sub node. 
+
+This node subscribes to the /odom topic to receive odometry information and publishes position and velocity information to the /pod\+\_\+vel topic using the custom Vel message type. 

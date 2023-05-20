@@ -1,77 +1,71 @@
-#include <ros/ros.h>
-#include <actionlib/client/simple_action_client.h>
-#include <actionlib/client/terminal_state.h>
-#include <assignment_2_2022/PlanningAction.h>
-#include <iostream>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <nav_msgs/Odometry.h>
+#include <control/Vel.h>
 
-int main (int argc, char **argv)
-{
-  
-  ros::init(argc, argv, "client");  
-  
-  // initialize node
+control::Vel msg1;
+
+/**
+ * \file client_sub.cpp
+ * \brief Subscriber node for receiving odometry information and publishing position and velocity.
+ */
+
+/**
+ * \brief Callback function for the odom topic.
+ *description:
+ *
+ * This function is called whenever a new Odometry message is received on the /odom topic.
+ * It extracts position and velocity information from the message and stores it in the custom Vel message.
+ *
+ */
+void Cbkodom(const nav_msgs::Odometry::ConstPtr& msg){
+   
+   // Set values of the custom Vel message
+   msg1.x = msg->pose.pose.position.x;
+   msg1.y = msg->pose.pose.position.y;
+   msg1.vel_x = msg->twist.twist.linear.x;
+   msg1.vel_y = msg->twist.twist.linear.y;
+   
+   ROS_INFO("x position: [%f]; y position: [%f], x velocity: [%f]; y velocity: [%f]  ", msg1.x, msg1.y, msg1.vel_x, msg1.vel_y);
+   
+}
+
+/**
+ * \brief Main function of the client_sub node.
+ *
+ * This node subscribes to the /odom topic to receive odometry information and publishes position and velocity
+ * information to the /pod_vel topic using the custom Vel message type.
+ */q
+int main(int argc, char **argv) {
+
+  // Initialize the ROS node
+  ros::init(argc, argv, "client_sub");
   ros::NodeHandle nh;
   
+  // Create a publisher for /pod_vel which publishes position and velocity
+  ros::Publisher pub = nh.advertise<control::Vel>("/pod_vel", 1);
 
-  int flag=0;
-	
-  // create the action client
-  
-  actionlib::SimpleActionClient<assignment_2_2022::PlanningAction> ac("reaching_goal", true);
+  // Create a subscriber for /odom topic with callback function Cbkodom
+  ros::Subscriber sub = nh.subscribe("/odom", 1, Cbkodom);
 
-  ROS_INFO("Waiting for action server to start.");
-  // wait for the action server to start
-  ac.waitForServer(); //will wait for infinite time
-    
-  // loop rate setting
+  // Set the loop rate
+  ros::Rate loop_rate(1);
 
-
-  ros::Rate rate(1);
-  
-  while(ros::ok()){
-  
-	  std::cout<<std::endl;
-	  
-	  ROS_INFO("Press : '1' for setting new goal, '0' for cancel a goal!");
-	  std::cin>>flag;
-	  
-	  // flag is '1' to new goal and '0' for cancel current goal
-	  if(flag)
-	  {
-	  
-		  double param_x = 0.0;
-		  double param_y = 0.0;
-		  
-		  std::cout<< "Please enter x_goal and y_goal"<<std::endl;
-		  
-		  std::cin>>param_x>>param_y;
-		  
-		  ROS_INFO("Server Activated! Sending goal.");
-		  assignment_2_2022::PlanningGoal goal;
-
-		  goal.target_pose.pose.position.x = param_x;
-		  goal.target_pose.pose.position.y = param_y;
-		  
-		  // send a goal to the action
-		  ac.sendGoal(goal);
-		  
-		  // recieved the goal status
-		  actionlib::SimpleClientGoalState state = ac.getState();
-	    	  ROS_INFO("Goal Status : %s",state.toString().c_str());	    	  
-	    	  assignment_2_2022::PlanningResultConstPtr dis_msg= ac.getResult();
-	          std::cout << std::endl;
-
-	  }
-	  else
-	  {
-	  
-	  	ROS_INFO("Client requested for goal Cancellation!");
-	  	ac.cancelGoal(); 
-	  	ROS_INFO("Goal has been cancelled!");
-	  
-	  }
-   
-   }
+  while (ros::ok())
+  {
+    // Publish the message to /pod_velqqqqqqqqq
+    pub.publish(msg1);
+    sleep(1);
+    ros::spinOnce();
+    loop_rate.sleep();
+  }
 
   return 0;
 }
+
+    loop_rate.sleep();
+  }
+
+  return 0;
+}
+

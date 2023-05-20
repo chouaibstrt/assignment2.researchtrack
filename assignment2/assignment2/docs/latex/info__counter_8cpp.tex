@@ -1,0 +1,119 @@
+\hypertarget{info__counter_8cpp}{}\doxysection{src/info\+\_\+counter.cpp File Reference}
+\label{info__counter_8cpp}\index{src/info\_counter.cpp@{src/info\_counter.cpp}}
+
+
+Node for counting the number of reached and cancelled goals and providing the count through a service.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}control/\+Counter.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}assignment\+\_\+2\+\_\+2022/\+Planning\+Action\+Result.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for info\+\_\+counter.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{info__counter_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{info__counter_8cpp_a258f1804016e36c51707502cb6e7f214}{callback}} (const assignment\+\_\+2\+\_\+2022\+::\+Planning\+Action\+Result\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the {\ttfamily /reaching\+\_\+goal/result} topic. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{info__counter_8cpp_aaf6dfeae722e6f7beaa8d5971a488863}{call\+\_\+count}} (control\+::\+Counter\+::\+Request \&req, control\+::\+Counter\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em Callback function to set values of the {\ttfamily /info\+\_\+counter} service response. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{info__counter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function of the {\ttfamily info\+\_\+counter} node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{info__counter_8cpp_a6e4ce36e622eb01432e2c50dc59d0c27}\label{info__counter_8cpp_a6e4ce36e622eb01432e2c50dc59d0c27}} 
+int {\bfseries counter\+\_\+reach} = 0
+\item 
+\mbox{\Hypertarget{info__counter_8cpp_af20186488c086573476471d4b4399e8e}\label{info__counter_8cpp_af20186488c086573476471d4b4399e8e}} 
+int {\bfseries counter\+\_\+cancel} = 0
+\item 
+\mbox{\Hypertarget{info__counter_8cpp_a7d6f8a25e94209bd3ba29b2051ca4f08}\label{info__counter_8cpp_a7d6f8a25e94209bd3ba29b2051ca4f08}} 
+int {\bfseries stat}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Node for counting the number of reached and cancelled goals and providing the count through a service. 
+
+This node subscribes to the {\ttfamily /reaching\+\_\+goal/result} topic to receive goal status messages and updates the counters based on the received status. It also provides a service at {\ttfamily /info\+\_\+counter} to retrieve the current count of reached and cancelled goals.
+
+Topics\+:
+\begin{DoxyItemize}
+\item Subscribed Topic\+: {\ttfamily /reaching\+\_\+goal/result} Message Type\+: {\ttfamily assignment\+\_\+2\+\_\+2022/\+Planning\+Action\+Result} Description\+: Subscribes to the topic to receive goal status messages.
+\end{DoxyItemize}
+
+Services\+:
+\begin{DoxyItemize}
+\item Advertised Service\+: {\ttfamily /info\+\_\+counter} Service Type\+: {\ttfamily control/\+Counter} Description\+: Provides a service to retrieve the current count of reached and cancelled goals. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{info__counter_8cpp_aaf6dfeae722e6f7beaa8d5971a488863}\label{info__counter_8cpp_aaf6dfeae722e6f7beaa8d5971a488863}} 
+\index{info\_counter.cpp@{info\_counter.cpp}!call\_count@{call\_count}}
+\index{call\_count@{call\_count}!info\_counter.cpp@{info\_counter.cpp}}
+\doxysubsubsection{\texorpdfstring{call\_count()}{call\_count()}}
+{\footnotesize\ttfamily bool call\+\_\+count (\begin{DoxyParamCaption}\item[{control\+::\+Counter\+::\+Request \&}]{req,  }\item[{control\+::\+Counter\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+Callback function to set values of the {\ttfamily /info\+\_\+counter} service response. 
+
+This function is called when the {\ttfamily /info\+\_\+counter} service is requested. It sets the response with the current count of reached and cancelled goals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The service request. \\
+\hline
+{\em res} & The service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the service call was successful, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{info__counter_8cpp_a258f1804016e36c51707502cb6e7f214}\label{info__counter_8cpp_a258f1804016e36c51707502cb6e7f214}} 
+\index{info\_counter.cpp@{info\_counter.cpp}!callback@{callback}}
+\index{callback@{callback}!info\_counter.cpp@{info\_counter.cpp}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily void callback (\begin{DoxyParamCaption}\item[{const assignment\+\_\+2\+\_\+2022\+::\+Planning\+Action\+Result\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function for the {\ttfamily /reaching\+\_\+goal/result} topic. 
+
+This function is called whenever a new {\ttfamily Planning\+Action\+Result} message is received on the {\ttfamily /reaching\+\_\+goal/result} topic. It updates the counters based on the status of the goal and prints the current count of reached and cancelled goals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The received {\ttfamily Planning\+Action\+Result} message. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{info__counter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{info__counter_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{info\_counter.cpp@{info\_counter.cpp}!main@{main}}
+\index{main@{main}!info\_counter.cpp@{info\_counter.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function of the {\ttfamily info\+\_\+counter} node. 
+
+Initializes the R\+OS node, creates a subscriber for the {\ttfamily /reaching\+\_\+goal/result} topic, creates a service server for the {\ttfamily /info\+\_\+counter} service, and starts spinning and processing callbacks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command-\/line arguments. \\
+\hline
+{\em argv} & An array of command-\/line arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The exit status of the program. 
+\end{DoxyReturn}

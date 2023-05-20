@@ -1,0 +1,114 @@
+\hypertarget{info__sub_8cpp}{}\doxysection{src/info\+\_\+sub.cpp File Reference}
+\label{info__sub_8cpp}\index{src/info\_sub.cpp@{src/info\_sub.cpp}}
+
+
+Node for subscribing to goal and position information and calculating average speed and remaining distance. Subscribes to the /reaching\+\_\+goal/goal and /pod\+\_\+vel topics and calculates average speed and remaining distance to the goal. Topics used\+: /reaching\+\_\+goal/goal, /pod\+\_\+vel.  
+
+
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}control/\+Vel.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}assignment\+\_\+2\+\_\+2022/\+Planning\+Action\+Goal.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for info\+\_\+sub.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{info__sub_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{info__sub_8cpp_a986d6540a27a7892870133844eba0763}{goal\+Cbk}} (const assignment\+\_\+2\+\_\+2022\+::\+Planning\+Action\+Goal\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function for the subscriber /reaching\+\_\+goal/goal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{info__sub_8cpp_a31d80c39645d3e05e917e1b4bd90090a}{pos\+Cbk}} (const control\+::\+Vel\+::\+Const\+Ptr \&msg1)
+\begin{DoxyCompactList}\small\item\em Callback function for the subscriber /pod\+\_\+vel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{info__sub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function of the info\+\_\+sub node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a87accd1af8e0aff4b818d891374f7cec}\label{info__sub_8cpp_a87accd1af8e0aff4b818d891374f7cec}} 
+double {\bfseries t} = 0.\+0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a42137762b612ae5e22ef10a314c4e990}\label{info__sub_8cpp_a42137762b612ae5e22ef10a314c4e990}} 
+double {\bfseries x\+\_\+g}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a271fa005ff77309f8abfcdb05a509416}\label{info__sub_8cpp_a271fa005ff77309f8abfcdb05a509416}} 
+double {\bfseries y\+\_\+g}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}\label{info__sub_8cpp_af88b946fb90d5f08b5fb740c70e98c10}} 
+double {\bfseries x}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_ab927965981178aa1fba979a37168db2a}\label{info__sub_8cpp_ab927965981178aa1fba979a37168db2a}} 
+double {\bfseries y}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_aa28e83f1aeabe23d806450842a7b8de2}\label{info__sub_8cpp_aa28e83f1aeabe23d806450842a7b8de2}} 
+double {\bfseries vel\+\_\+x}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_ad96d80a2d23bd4be1d04d8d4076c0250}\label{info__sub_8cpp_ad96d80a2d23bd4be1d04d8d4076c0250}} 
+double {\bfseries vel\+\_\+y}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a8a1ae7f0b2535368281e3ac8d6e4c7fc}\label{info__sub_8cpp_a8a1ae7f0b2535368281e3ac8d6e4c7fc}} 
+double {\bfseries avg\+\_\+vel} = 0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_accf93555161c9eedf006462a228af523}\label{info__sub_8cpp_accf93555161c9eedf006462a228af523}} 
+double {\bfseries dist} = 0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a96a3d653453ba9e70f67b568ad0a2756}\label{info__sub_8cpp_a96a3d653453ba9e70f67b568ad0a2756}} 
+double {\bfseries dist\+\_\+left} = 0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_abbe7022aec9f48c2b326a4ea2ffe4b1d}\label{info__sub_8cpp_abbe7022aec9f48c2b326a4ea2ffe4b1d}} 
+double {\bfseries x\+\_\+prev} = 0.\+0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_ae1e55c477a79cf61b44482ef6a84cf8d}\label{info__sub_8cpp_ae1e55c477a79cf61b44482ef6a84cf8d}} 
+double {\bfseries y\+\_\+prev} = 0.\+0
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a6d875746321b630e34103d599c4d6a29}\label{info__sub_8cpp_a6d875746321b630e34103d599c4d6a29}} 
+double {\bfseries x\+\_\+in}
+\item 
+\mbox{\Hypertarget{info__sub_8cpp_a64976365b9e50e72a5c9bdbb56972588}\label{info__sub_8cpp_a64976365b9e50e72a5c9bdbb56972588}} 
+double {\bfseries y\+\_\+in}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Node for subscribing to goal and position information and calculating average speed and remaining distance. Subscribes to the /reaching\+\_\+goal/goal and /pod\+\_\+vel topics and calculates average speed and remaining distance to the goal. Topics used\+: /reaching\+\_\+goal/goal, /pod\+\_\+vel. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{info__sub_8cpp_a986d6540a27a7892870133844eba0763}\label{info__sub_8cpp_a986d6540a27a7892870133844eba0763}} 
+\index{info\_sub.cpp@{info\_sub.cpp}!goalCbk@{goalCbk}}
+\index{goalCbk@{goalCbk}!info\_sub.cpp@{info\_sub.cpp}}
+\doxysubsubsection{\texorpdfstring{goalCbk()}{goalCbk()}}
+{\footnotesize\ttfamily void goal\+Cbk (\begin{DoxyParamCaption}\item[{const assignment\+\_\+2\+\_\+2022\+::\+Planning\+Action\+Goal\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function for the subscriber /reaching\+\_\+goal/goal. 
+
+This function is called whenever a new Planning\+Action\+Goal message is received on the /reaching\+\_\+goal/goal topic. It updates the target position. \mbox{\Hypertarget{info__sub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{info__sub_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{info\_sub.cpp@{info\_sub.cpp}!main@{main}}
+\index{main@{main}!info\_sub.cpp@{info\_sub.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function of the info\+\_\+sub node. 
+
+Initializes the R\+OS node, subscribes to the /reaching\+\_\+goal/goal and /pod\+\_\+vel topics, and starts spinning and processing callbacks. \mbox{\Hypertarget{info__sub_8cpp_a31d80c39645d3e05e917e1b4bd90090a}\label{info__sub_8cpp_a31d80c39645d3e05e917e1b4bd90090a}} 
+\index{info\_sub.cpp@{info\_sub.cpp}!posCbk@{posCbk}}
+\index{posCbk@{posCbk}!info\_sub.cpp@{info\_sub.cpp}}
+\doxysubsubsection{\texorpdfstring{posCbk()}{posCbk()}}
+{\footnotesize\ttfamily void pos\+Cbk (\begin{DoxyParamCaption}\item[{const control\+::\+Vel\+::\+Const\+Ptr \&}]{msg1 }\end{DoxyParamCaption})}
+
+
+
+Callback function for the subscriber /pod\+\_\+vel. 
+
+This function is called whenever a new Vel message is received on the /pod\+\_\+vel topic. It calculates the average speed and remaining distance to the goal based on the current position. 
