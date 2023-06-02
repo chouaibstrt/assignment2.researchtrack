@@ -14,10 +14,12 @@ node publishes the information.
 - Also create a launch file to start the whole simulation. Set the value for the frequency with which node (c) publishes
 the information
 
-### you can find the package documentation using this link:
-[Documentation](https://chouaibstrt.github.io/assignment2.researchtrack/)
+## Documentation: Doxygen
+here you can find the doxygen documentation of the 3 nodes :
+<https://chouaibstrt.github.io/assignment2.researchtrack/>
 
-### you have also the possibility to visualize and interact with the implementation using the notebook
+### jupyter
+you have also the possibility to visualize and interact with the implementation using the notebook
 
   
 
