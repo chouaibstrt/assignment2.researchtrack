@@ -91,4 +91,10 @@ int main(int argc, char **argv)
     ros::Subscriber sub = n.subscribe("/reaching_goal/result", 1, callback);
 
     // Advertise the `/info_counter` service with the callback function `call_count`
+// Service to /info_counter to set values on service
+	ros::ServiceServer service = n.advertiseService("/info_counter", call_count);
 
+		
+	ros::spin();
+   return 0;
+}

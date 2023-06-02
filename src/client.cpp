@@ -35,7 +35,7 @@ void Cbkodom(const nav_msgs::Odometry::ConstPtr& msg){
  *
  * This node subscribes to the /odom topic to receive odometry information and publishes position and velocity
  * information to the /pod_vel topic using the custom Vel message type.
- */q
+ */
 int main(int argc, char **argv) {
 
   // Initialize the ROS node
@@ -63,9 +63,4 @@ int main(int argc, char **argv) {
   return 0;
 }
 
-    loop_rate.sleep();
-  }
-
-  return 0;
-}
 
